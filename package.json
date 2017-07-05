@@ -12,6 +12,9 @@
     "random-access-memory": "^2.4.0"
   },
   "devDependencies": {},
+  "bin": {
+    "dat-test": "./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mafintosh/sciencefair-dat-test.git"
