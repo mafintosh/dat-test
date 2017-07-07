@@ -6,7 +6,9 @@ var ram = require('random-access-memory')
 var net = require('net')
 var diff = require('ansi-diff-stream')
 var progress = require('progress-string')
+var ws = require('websocket-stream')
 
+var useWs = process.argv.indexOf('--websocket') > -1
 var out = diff()
 
 out.pipe(process.stdout)
@@ -44,7 +46,7 @@ archive.on('content', function () {
 
     function update () {
       out.write(
-        'Downloading test dat from ' + archive.content.peers.length + ' peers into memory\n' +
+        'Downloading test dat from ' + archive.content.peers.length + ' peer(s) into memory\n' +
         '[' + pr(fetched) + '] ' + (100 * fetched / archive.content.length).toFixed(1) + '%'
       )
     }
@@ -53,6 +55,14 @@ archive.on('content', function () {
 
 archive.on('ready', function () {
   var peers = []
+
+  if (useWs) {
+    var stream = ws('wss://hasselhoff.mafintosh.com')
+    pump(stream, archive.replicate({encrypt: false}), stream, function (err) {
+      if (err) throw err
+    })
+    return
+  }
 
   dns.on('peer', function (id, peer) {
     peers.push(peer)
