@@ -18,12 +18,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mafintosh/sciencefair-dat-test.git"
+    "url": "https://github.com/mafintosh/dat-test.git"
   },
   "author": "Mathias Buus (@mafintosh)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mafintosh/sciencefair-dat-test/issues"
+    "url": "https://github.com/mafintosh/dat-test/issues"
   },
-  "homepage": "https://github.com/mafintosh/sciencefair-dat-test"
+  "homepage": "https://github.com/mafintosh/dat-test"
 }
